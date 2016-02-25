@@ -19,34 +19,6 @@ type Kml struct {
 	Folders    []Folder    `xml:"Folder"`
 }
 
-// Style for features
-type Style struct {
-	XMLName xml.Name  `xml:"Style"`
-	Id      string    `xml:"id,attr,omitempty"`
-	Icon    IconStyle `xml:"IconStyle"`
-}
-
-// IconStyle
-type IconStyle struct {
-	XMLName xml.Name `xml:"IconStyle"`
-	Scale   string   `xml:"scale,omitempty"`
-	Heading string   `xml:"heading,omitempty"`
-	Href    string   `xml:"Icon>href,omitempty"`
-}
-
-// ExtendedData for placemarks
-type ExtendedData struct {
-	XMLName xml.Name `xml:"ExtendedData"`
-	Datas   []Data   `xml:"Data"`
-}
-
-// Data that goes in ExtendedData
-type Data struct {
-	XMLName xml.Name `xml:"Data"`
-	Name    string   `xml:"name,attr"`
-	Value   string   `xml:"value"`
-}
-
 // NewKml() creates a new Kml structure with the specified namespace
 func NewKml(namespace string) Kml {
 	k := Kml{}
@@ -71,31 +43,6 @@ func (k *Kml) AddPlacemark(p Placemark) {
 // AddFolder() adds a folder to the document
 func (k *Kml) AddFolder(p Folder) {
 	k.Folders = append(k.Folders, p)
-}
-
-func NewStyle(id string) Style {
-	s := Style{Id: id}
-	return s
-}
-
-func (s *Style) AddIconStyle(is IconStyle) {
-	s.Icon = is
-}
-
-func NewIconStyle(scale, heading, href string) IconStyle {
-	is := IconStyle{Scale: scale, Heading: heading, Href: href}
-	return is
-}
-
-// NewExtendedData() creates new extended data
-func NewExtendedData() ExtendedData {
-	return ExtendedData{}
-}
-
-// AddData() adds data of {name, value} to the ExtendedData structure
-func (e *ExtendedData) AddData(name, value string) {
-	d := Data{Name: name, Value: value}
-	e.Datas = append(e.Datas, d)
 }
 
 // Marshal() returns a properly indented XML structure

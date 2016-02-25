@@ -13,13 +13,14 @@ type Document struct {
 	Name        string      `xml:"name,omitempty"`
 	Visibility  int         `xml:"visibility,omitempty"`
 	Open        int         `xml:"open,omitempty"`
+	AtomAuthor  AtomAuthor  `xml:"http://www.w3.org/2005/Atom author,omitempty"`
 	Address     string      `xml:"address,omitempty"`
 	PhoneNumber string      `xml:"phoneNumber,omitempty"`
 	Description string      `xml:"description,omitempty"`
+	Schema      []Schema    `xml:"Schema"`
+	DocStyle    []Style     `xml:"Style"`
 	Placemarks  []Placemark `xml:"Placemark"`
 	Folders     []Folder    `xml:"Folder"`
-	DocStyle    []Style     `xml:"Style"`
-	AtomAuthor  AtomAuthor  `xml:"http://www.w3.org/2005/Atom author,omitempty"`
 }
 
 // NewDocument() creates a new document
@@ -31,6 +32,11 @@ func NewDocument(id, name string) Document {
 // AddPlacemark() adds a placemark to the document
 func (d *Document) AddPlacemark(p Placemark) {
 	d.Placemarks = append(d.Placemarks, p)
+}
+
+// AddSchema() adds a schema to the document
+func (d *Document) AddSchema(s Schema) {
+	d.Schema = append(d.Schema, s)
 }
 
 // AddStyle() adds a style to the document

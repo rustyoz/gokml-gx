@@ -1,11 +1,15 @@
 package gokml_gx
 
+import (
+	"encoding/xml"
+)
+
 /*
  * Container type Atom Author
  */
 type AtomAuthor struct {
-	Name      string `xml:"name,omitempty"`
-	Namespace string `xml:"xmlns,attr"`
+	XMLName xml.Name `xml:"http://www.w3.org/2005/Atom author"`
+	Name    string   `xml:"name,omitempty"`
 }
 
 /*

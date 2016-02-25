@@ -30,6 +30,12 @@ func TestUnmarshal(t *testing.T) {
 	fmt.Printf("KML:\n %+v\n", new_kml)
 
 	// testKml(new_kml, t)
+
+	// b, err := new_kml.Marshal()
+	// if err != nil {
+	// 	t.Errorf("Error while marshalling: %q", err.Error())
+	// }
+	// fmt.Printf("KML:\n %s\n", b)
 }
 
 func TestJsonMarshal(t *testing.T) {
