@@ -21,6 +21,7 @@ type Document struct {
 	DocStyle    []Style     `xml:"Style"`
 	Placemarks  []Placemark `xml:"Placemark"`
 	Folders     []Folder    `xml:"Folder"`
+	Elements    []interface{}
 }
 
 // NewDocument() creates a new document
@@ -52,4 +53,9 @@ func (d *Document) AddFolder(f Folder) {
 // Document.Marshal() returns the marshalled xml structure
 func (d *Document) Marshal() ([]byte, error) {
 	return xml.MarshalIndent(d, "", "	")
+}
+
+// AddElement() adds a path to the document
+func (d *Document) AddElement(e Element) {
+	d.Elements = append(d.Elements, e)
 }

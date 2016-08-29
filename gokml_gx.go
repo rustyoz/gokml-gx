@@ -17,6 +17,11 @@ type Kml struct {
 	Document   Document    `xml:"Document"`
 	Placemarks []Placemark `xml:"Placemark"`
 	Folders    []Folder    `xml:"Folder"`
+	Elements   []Element
+}
+
+type Element interface {
+	Marshal() ([]byte, error)
 }
 
 // NewKml() creates a new Kml structure with the specified namespace
@@ -38,6 +43,12 @@ func (k *Kml) AddDocument(d Document) {
 // AddPlacemark() adds a placemark to the document
 func (k *Kml) AddPlacemark(p Placemark) {
 	k.Placemarks = append(k.Placemarks, p)
+}
+
+// AddElement() adds a path to the document
+func (k *Kml) AddElement(e Element) {
+
+	k.Elements = append(k.Elements, e)
 }
 
 // AddFolder() adds a folder to the document

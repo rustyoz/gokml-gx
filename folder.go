@@ -18,6 +18,7 @@ type Folder struct {
 	Description string      `xml:"description,omitempty"`
 	Placemarks  []Placemark `xml:"Placemark"`
 	Folders     []Folder    `xml:"Folder"`
+	Elements    []interface{}
 }
 
 /*
@@ -43,4 +44,10 @@ func (d *Folder) AddFolder(f Folder) {
 // SetVisibility() sets the visibility of the folder
 func (f *Folder) SetVisibility(visibility bool) {
 	f.Visibility = boolToInt(visibility)
+}
+
+// AddElement() adds a path to the document
+func (f *Folder) AddElement(e interface{}) {
+
+	f.Elements = append(f.Elements, e)
 }
