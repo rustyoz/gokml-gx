@@ -17,6 +17,7 @@ type Path struct {
 	Coordinates string       `xml:"LineString>coordinates"`
 	Extended    ExtendedData `xml:"ExtendedData"`
 	Style       Style        `xml:",omitempty"`
+	TimeStamp   string       `xml:"TimeStamp,omitempty"`
 }
 
 // NewPath() creates a new Path.  All parameters are strings.
